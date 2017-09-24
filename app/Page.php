@@ -2,7 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+
+use App\Transformers\PageTransformer;
+use League\Fractal\TransformerAbstract;
 
 class Page extends Model
 {
@@ -12,5 +14,15 @@ class Page extends Model
     public function article()
     {
         return $this->belongsTo(Article::class);
+    }
+
+    /**
+     * Get the transformer for the model.
+     *
+     * @return TransformerAbstract
+     */
+    function transformer(): TransformerAbstract
+    {
+        return new PageTransformer();
     }
 }

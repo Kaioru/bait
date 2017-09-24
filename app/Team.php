@@ -2,7 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+
+use League\Fractal\TransformerAbstract;
 
 class Team extends Model
 {
@@ -28,5 +29,15 @@ class Team extends Model
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    /**
+     * Get the transformer for the model.
+     *
+     * @return TransformerAbstract
+     */
+    function transformer(): TransformerAbstract
+    {
+        // TODO: Implement transformer() method.
     }
 }

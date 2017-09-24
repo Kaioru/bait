@@ -2,7 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+
+use App\Transformers\UserTransformer;
+use League\Fractal\TransformerAbstract;
 
 class User extends Model
 {
@@ -17,7 +19,8 @@ class User extends Model
     /**
      * Get the user's owned teams.
      */
-    public function ownedTeams() {
+    public function ownedTeams()
+    {
         return $this->hasMany(Team::class);
     }
 
@@ -27,5 +30,15 @@ class User extends Model
     public function teams()
     {
         return $this->belongsToMany(Team::class);
+    }
+
+    /**
+     * Get the transformer for the model.
+     *
+     * @return TransformerAbstract
+     */
+    function transformer(): TransformerAbstract
+    {
+        return new UserTransformer();
     }
 }
