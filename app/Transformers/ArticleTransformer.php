@@ -30,7 +30,7 @@ class ArticleTransformer extends TransformerAbstract
     public function transform(Article $model)
     {
         return [
-            'id' => (int)$model->id,
+            'id' => (string)$model->id,
             'title' => (string)$model->title,
             'content' => (string)$model->content,
             'unlisted' => (boolean)$model->unlisted,

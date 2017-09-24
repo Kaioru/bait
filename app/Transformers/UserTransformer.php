@@ -10,7 +10,7 @@ class UserTransformer extends TransformerAbstract
     public function transform(User $model)
     {
         return [
-            'id' => (int)$model->id,
+            'id' => (string)$model->id,
             'name' => (string)$model->name,
         ];
     }

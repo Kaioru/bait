@@ -11,7 +11,7 @@ class PageTransformer extends TransformerAbstract
     public function transform(Page $model)
     {
         return [
-            'id' => (int)$model->id,
+            'id' => (string)$model->id,
             'subtitle' => (string)$model->suntitle,
             'content' => (string)$model->content,
         ];

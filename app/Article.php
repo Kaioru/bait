@@ -3,10 +3,13 @@
 namespace App;
 
 
+use Alsofronie\Uuid\UuidModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    use UuidModelTrait;
+
     /**
      * The attributes that are mass assignable.
      *

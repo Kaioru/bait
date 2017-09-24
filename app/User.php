@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Alsofronie\Uuid\UuidModelTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -12,7 +13,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
-    use Authenticatable, Authorizable;
+    use Authenticatable, Authorizable, UuidModelTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -40,7 +41,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password' => ['required'],
     ];
 
-    public function setPasswordAttribute($value){
+    public function setPasswordAttribute($value)
+    {
         $this->attributes['password'] = Hash::make($value);
     }
 
