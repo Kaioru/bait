@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use Dingo\Api\Routing\Helpers;
-use Tymon\JWTAuth\JWTAuth;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
+use Tymon\JWTAuth\JWTAuth;
 
 class AuthenticateController extends BaseController
 {
@@ -22,7 +22,7 @@ class AuthenticateController extends BaseController
     {
         $credentials = $request->only('email', 'password');
         try {
-            if (! $token = $this->auth->attempt($credentials)) {
+            if (!$token = $this->auth->attempt($credentials)) {
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {
