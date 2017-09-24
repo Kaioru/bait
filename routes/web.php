@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticateController;
+use App\Http\Controllers\Auth\UserController;
+use Dingo\Api\Routing\Router;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +19,15 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$api = app('Dingo\Api\Routing\Router');
+$api = app(Router::class);
 
 $api->version('v1', function ($api) {
-    $api->post('auth/login', AuthenticateController::class . '@authenticate');
+    $api->group(['prefix' => 'auth'], function ($api) {
+        $api->post('login', AuthenticateController::class . '@authenticate');
+        $api->post('register', UserController::class . '@store');
+    });
+
+    $api->group(['middleware' => 'jwt.refresh'], function ($api) {
+        
+    });
 });

@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Http\Request;
-use Laravel\Lumen\Routing\Controller as BaseController;
+use Laravel\Lumen\Routing\Controller;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\JWTAuth;
 
-class AuthenticateController extends BaseController
+class AuthenticateController extends Controller
 {
     use Helpers;
 
