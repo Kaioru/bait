@@ -28,10 +28,8 @@ abstract class Resource extends BaseController
 
     /**
      * Constructor.
-     *
-     * @param Request $request
      */
-    public function __construct(Request $request)
+    public function __construct()
     {
         $this->model = $this->model();
         $this->transformer = $this->transformer();

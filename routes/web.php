@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\PageController;
 use Dingo\Api\Routing\Router;
 
 /*
@@ -27,7 +29,6 @@ $api->version('v1', function ($api) {
         $api->post('register', UserController::class . '@store');
     });
 
-    $api->group(['middleware' => 'jwt.refresh'], function ($api) {
-        
-    });
+    $api->resource('articles', ArticleController::class);
+    $api->resource('pages', PageController::class);
 });
