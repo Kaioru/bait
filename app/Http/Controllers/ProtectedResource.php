@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use Dingo\Api\Exception\DeleteResourceFailedException;
 use Dingo\Api\Exception\UpdateResourceFailedException;
 use Illuminate\Http\Request;
 
@@ -18,21 +19,21 @@ abstract class ProtectedResource extends Resource
     {
         $model = $this->find($id);
 
-        if ($model->owner_id == $this->user_id) {
+        if ($model->owner_id == $request->user()->id) {
             parent::update($request, $id);
         } else {
-            throw new UpdateResourceFailedException();
+            throw new UpdateResourceFailedException('No permission to update model.');
         }
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $model = $this->find($id);
 
-        if ($model->owner_id == $this->user_id) {
-            parent::destroy($id);
+        if ($model->owner_id == $request->user()->id) {
+            parent::destroy($request, $id);
         } else {
-            throw new UpdateResourceFailedException();
+            throw new DeleteResourceFailedException('No permission to destroy model.');
         }
     }
 }
