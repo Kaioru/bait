@@ -12,7 +12,7 @@ class Article extends Model
         'body',
     ];
 
-    protected $validation = [
+    public $validation = [
         'title' => ['required'],
         'body' => ['required'],
     ];

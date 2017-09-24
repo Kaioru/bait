@@ -13,7 +13,7 @@ class Page extends Model
         'body',
     ];
 
-    protected $validation = [
+    public $validation = [
         'title' => ['required'],
         'body' => ['required'],
     ];

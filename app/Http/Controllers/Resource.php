@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Dingo\Api\Exception\StoreResourceFailedException;
+use Dingo\Api\Exception\UpdateResourceFailedException;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Laravel\Lumen\Routing\Controller;
 use League\Fractal\TransformerAbstract;
 
 abstract class Resource extends Controller
 {
     use Helpers;
+
     /**
      * Eloquent model instance.
      *
@@ -73,6 +75,7 @@ abstract class Resource extends Controller
     {
         $model = new $this->model($request->all());
         $transformer = $this->transformer;
+        return $model->validation;
         $validator = $this->getValidationFactory()->make($request->all(), $model->validation);
 
         $this->beforeStore($request, $model);

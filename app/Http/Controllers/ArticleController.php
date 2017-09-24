@@ -22,19 +22,19 @@ class ArticleController extends ProtectedResource
 
     protected function beforeStore(Request $request, Model $model)
     {
-        $model->owner = $request->user()->id;
+        $model->publisher = $request->user()->id;
         parent::beforeStore($request, $model);
     }
 
     protected function beforeUpdate(Request $request, Model $model)
     {
-        $this->validate($request->user(), $model->publisher);
+        $this->authorizeUser($request->user(), $model->publisher);
         parent::beforeUpdate($request, $model);
     }
 
     protected function beforeDestroy(Request $request, Model $model)
     {
-        $this->validate($request->user(), $model->publisher);
+        $this->authorizeUser($request->user(), $model->publisher);
         parent::beforeDestroy($request, $model);
     }
 }

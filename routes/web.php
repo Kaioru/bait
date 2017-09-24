@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Auth\AuthenticateController;
+use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\TestController;
 use Dingo\Api\Routing\Router;
 
@@ -23,7 +26,8 @@ $api = app(Router::class);
 
 $api->version('v1', function ($api) {
     $api->group(['prefix' => 'auth'], function ($api) {
-
+        $api->post('login', AuthenticationController::class . '@authenticate');
+        $api->post('register', UserController::class . '@store');
     });
 
     $api->resource('articles', ArticleController::class);
