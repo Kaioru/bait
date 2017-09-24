@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Article;
+use Dingo\Api\Exception\UpdateResourceFailedException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,9 @@ class ArticleController extends ProtectedResource
 
     protected function beforeStore(Request $request, Model $model)
     {
-        $model->publisher = $request->user()->id;
+        $user = $request->user();
+        $model->publisher_id = $user->id;
+        $model->publisher_type = get_class($user);
         parent::beforeStore($request, $model);
     }
 
