@@ -6,4 +6,18 @@ You know those articles you always somehow stumble upon with titles like 'Top 5 
 
 Yeah, me too buddy.
 
-Bait is an elegant web api and page that allows users to create their own clickbait articles written in Lumen.
+Bait is an elegant web api and page that allows users to create their own clickbait articles.
+
+## Deployment
+### 1 - Clone this repository
+`git clone https://github.com/Kaioru/bait && cd bait`
+
+### 2 - Install depependencies
+`composer install`
+
+### 3 - Run it somehow
+Check out the Laravel or Lumen docs to look at the many ways to run it.
+I recommend using Valet for machines running MacOS.
+
+## Acknowledgements
+Bait is proudly written in PHP and Lumen.
