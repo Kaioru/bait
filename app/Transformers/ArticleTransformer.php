@@ -32,6 +32,7 @@ class ArticleTransformer extends TransformerAbstract
         return [
             'id' => (string)$model->id,
             'title' => (string)$model->title,
+            'slug' => (string)$model->slug,
             'content' => (string)$model->content,
             'unlisted' => (boolean)$model->unlisted,
         ];

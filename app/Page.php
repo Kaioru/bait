@@ -10,6 +10,10 @@ class Page extends Model
 {
     use UuidModelTrait;
 
+    public $validation = [
+        'subtitle' => ['required'],
+        'content' => ['required'],
+    ];
     /**
      * The attributes that are mass assignable.
      *
@@ -19,7 +23,6 @@ class Page extends Model
         'subtitle',
         'content',
     ];
-
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -27,11 +30,6 @@ class Page extends Model
      */
     protected $hidden = [
 
-    ];
-
-    public $validation = [
-        'subtitle' => ['required'],
-        'content' => ['required'],
     ];
 
     /**

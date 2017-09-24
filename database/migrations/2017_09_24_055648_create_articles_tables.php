@@ -17,6 +17,7 @@ class CreateArticlesTables extends Migration
             $table->uuid('id');
             $table->uuid('owner_id');
             $table->text('title');
+            $table->string('slug')->unique();
             $table->text('content');
             $table->boolean('unlisted');
             $table->timestamps();

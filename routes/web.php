@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ArticleSlugController;
 use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\PageController;
@@ -30,5 +31,6 @@ $api->version('v1', function ($api) {
     });
 
     $api->resource('articles', ArticleController::class);
+    $api->resource('slug/articles', ArticleSlugController::class);
     $api->resource('pages', PageController::class);
 });

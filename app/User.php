@@ -15,6 +15,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable, UuidModelTrait;
 
+    public $validation = [
+        'name' => ['required'],
+        'email' => ['required'],
+        'password' => ['required'],
+    ];
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +30,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'email',
         'password',
     ];
-
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -33,12 +37,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = [
         'password',
-    ];
-
-    public $validation = [
-        'name' => ['required'],
-        'email' => ['required'],
-        'password' => ['required'],
     ];
 
     public function setPasswordAttribute($value)

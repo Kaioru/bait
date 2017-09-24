@@ -5,11 +5,18 @@ namespace App;
 
 use Alsofronie\Uuid\UuidModelTrait;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Article extends Model
 {
-    use UuidModelTrait;
+    use UuidModelTrait, HasSlug;
 
+    public $validation = [
+        'title' => ['required'],
+        'content' => ['required'],
+        'unlisted' => ['required'],
+    ];
     /**
      * The attributes that are mass assignable.
      *
@@ -20,7 +27,6 @@ class Article extends Model
         'content',
         'unlisted',
     ];
-
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -28,12 +34,6 @@ class Article extends Model
      */
     protected $hidden = [
 
-    ];
-
-    public $validation = [
-        'title' => ['required'],
-        'content' => ['required'],
-        'unlisted' => ['required'],
     ];
 
     /**
@@ -50,5 +50,15 @@ class Article extends Model
     public function owner()
     {
         return $this->belongsTo('App\User', 'owner_id');
+    }
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions()
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 }

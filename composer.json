@@ -10,7 +10,8 @@
         "vlucas/phpdotenv": "~2.2",
         "dingo/api": "2.0.x@dev",
         "tymon/jwt-auth": "1.0.*@dev",
-        "alsofronie/eloquent-uuid": "dev-master"
+        "alsofronie/eloquent-uuid": "dev-master",
+        "spatie/laravel-sluggable": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
