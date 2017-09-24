@@ -4,17 +4,23 @@ namespace App;
 
 use App\Transformers\ArticleTransformer;
 use League\Fractal\TransformerAbstract;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Article extends Model
 {
+    use HasSlug;
+
     protected $fillable = [
         'title',
         'body',
+        'unlisted',
     ];
 
     public $validation = [
         'title' => ['required'],
         'body' => ['required'],
+        'unlisted' => ['required'],
     ];
 
     /**
@@ -41,5 +47,15 @@ class Article extends Model
     function transformer(): TransformerAbstract
     {
         return new ArticleTransformer();
+    }
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 }

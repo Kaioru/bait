@@ -96,11 +96,16 @@ abstract class Resource extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $model = $this->find($id);
+        $this->beforeShow($request, $model);
         $transformer = $this->transformer;
         return $this->response->item($model, $transformer);
+    }
+
+    protected function beforeShow(Request $request, Model $model)
+    {
     }
 
     /**

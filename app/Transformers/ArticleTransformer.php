@@ -20,6 +20,7 @@ class ArticleTransformer extends TransformerAbstract
     {
         return [
             'id' => (int)$model->id,
+            'slug' => (string)$model->slug,
             'title' => (string)$model->title,
             'body' => (string)$model->body,
             'publisher_type' => (string)$model->publisher_type,
