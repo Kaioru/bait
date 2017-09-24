@@ -2,65 +2,30 @@
 
 namespace App;
 
-use Alsofronie\Uuid\UuidModelTrait;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Lumen\Auth\Authorizable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
+class User extends Model
 {
-    use Authenticatable, Authorizable, UuidModelTrait;
-
-    public $validation = [
-        'name' => ['required'],
-        'email' => ['required'],
-        'password' => ['required'],
-    ];
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Get the user's articles.
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-    ];
-
-    public function setPasswordAttribute($value)
+    public function articles()
     {
-        $this->attributes['password'] = Hash::make($value);
+        return $this->morphMany(Article::class, 'publisher');
     }
 
     /**
-     * Get the identifier that will be stored in the subject claim of the JWT
-     *
-     * @return mixed
+     * Get the user's owned teams.
      */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
+    public function ownedTeams() {
+        return $this->hasMany(Team::class);
     }
 
     /**
-     * Return a key value array, containing any custom claims to be added to the JWT
-     *
-     * @return array
+     * Get the user's teams.
      */
-    public function getJWTCustomClaims()
+    public function teams()
     {
-        return [];
+        return $this->belongsToMany(Team::class);
     }
 }

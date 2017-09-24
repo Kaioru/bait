@@ -2,63 +2,22 @@
 
 namespace App;
 
-
-use Alsofronie\Uuid\UuidModelTrait;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 
 class Article extends Model
 {
-    use UuidModelTrait, HasSlug;
-
-    public $validation = [
-        'title' => ['required'],
-        'content' => ['required'],
-        'unlisted' => ['required'],
-    ];
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Get the article's publisher.
      */
-    protected $fillable = [
-        'title',
-        'content',
-        'unlisted',
-    ];
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
-
-    ];
-
-    /**
-     * Get the pages for the article.
-     */
-    public function pages()
+    public function publisher()
     {
-        return $this->hasMany('App\Page');
+        return $this->morphTo();
     }
 
     /**
-     * Get the user that owns the article.
+     * Get the article's pages.
      */
-    public function owner()
-    {
-        return $this->belongsTo('App\User', 'owner_id');
-    }
-
-    /**
-     * Get the options for generating the slug.
-     */
-    public function getSlugOptions()
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
+    public function pages() {
+        $this->hasMany(Page::class);
     }
 }
