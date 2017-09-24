@@ -23,6 +23,7 @@ class ArticleTransformer extends TransformerAbstract
             'slug' => (string)$model->slug,
             'title' => (string)$model->title,
             'body' => (string)$model->body,
+            'unlisted' => (boolean)$model->unlisted,
             'publisher_type' => (string)$model->publisher_type,
         ];
     }
