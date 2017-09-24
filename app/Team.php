@@ -3,6 +3,7 @@
 namespace App;
 
 
+use App\Transformers\TeamTransformer;
 use League\Fractal\TransformerAbstract;
 
 class Team extends Model
@@ -38,6 +39,6 @@ class Team extends Model
      */
     function transformer(): TransformerAbstract
     {
-        // TODO: Implement transformer() method.
+        return new TeamTransformer();
     }
 }

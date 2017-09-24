@@ -7,6 +7,16 @@ use League\Fractal\TransformerAbstract;
 
 class Article extends Model
 {
+    protected $fillable = [
+        'title',
+        'body',
+    ];
+
+    protected $validation = [
+        'title' => ['required'],
+        'body' => ['required'],
+    ];
+
     /**
      * Get the article's publisher.
      */

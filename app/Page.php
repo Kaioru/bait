@@ -8,6 +8,16 @@ use League\Fractal\TransformerAbstract;
 
 class Page extends Model
 {
+    protected $fillable = [
+        'title',
+        'body',
+    ];
+
+    protected $validation = [
+        'title' => ['required'],
+        'body' => ['required'],
+    ];
+
     /**
      * Get the page's article.
      */

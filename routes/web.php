@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\TestController;
 use Dingo\Api\Routing\Router;
 
@@ -25,5 +26,5 @@ $api->version('v1', function ($api) {
 
     });
 
-    $api->get('test', TestController::class . '@test');
+    $api->resource('articles', ArticleController::class);
 });

@@ -22,6 +22,7 @@ class ArticleTransformer extends TransformerAbstract
             'id' => (int)$model->id,
             'title' => (string)$model->title,
             'body' => (string)$model->body,
+            'publisher_type' => (string)$model->publisher_type,
         ];
     }
 
@@ -29,13 +30,13 @@ class ArticleTransformer extends TransformerAbstract
      * Include publisher
      *
      * @param Article $model
-     * @return \League\Fractal\Resource\Collection|\League\Fractal\Resource\NullResource
+     * @return \League\Fractal\Resource\Item|\League\Fractal\Resource\NullResource
      */
-    public function includeProductions(Article $model)
+    public function includePublisher(Article $model)
     {
-        $include = $model->publisher();
+        $include = $model->publisher;
         return $include
-            ? $this->collection($include, $include->transformer())
+            ? $this->item($include, $include->transformer())
             : $this->null();
     }
 }
