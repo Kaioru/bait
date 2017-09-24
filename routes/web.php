@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticateController;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,4 +15,10 @@
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
+});
+
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('v1', function ($api) {
+    $api->post('auth/login', AuthenticateController::class . '@authenticate');
 });
