@@ -75,7 +75,6 @@ abstract class Resource extends Controller
     {
         $model = new $this->model($request->all());
         $transformer = $this->transformer;
-        return $model->validation;
         $validator = $this->getValidationFactory()->make($request->all(), $model->validation);
 
         $this->beforeStore($request, $model);
