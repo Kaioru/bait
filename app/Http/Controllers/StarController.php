@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 
 use App\Star;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -27,7 +26,14 @@ class StarController extends ProtectedResource
 
     protected function beforeStore(Request $request, Model $model)
     {
-        $model->user_id = $request->user()->id;
+        $user = $request->user();
+        $article = $model->article;
+
+        if ($user->stars->contains('article_id', $article->id)) {
+            $this->response->errorForbidden('already_starred');
+        }
+
+        $model->user_id = $user->id;
         parent::beforeStore($request, $model);
     }
 
