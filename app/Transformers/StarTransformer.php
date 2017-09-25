@@ -2,14 +2,14 @@
 
 namespace App\Transformers;
 
-
+use App\Transformers\Traits\ArticleStarTrait;
 use App\Transformers\Traits\StarTrait;
 use App\Transformers\Traits\UserStarTrait;
 use League\Fractal\TransformerAbstract;
 
-class UserStarTransformer extends TransformerAbstract
+class StarTransformer extends TransformerAbstract
 {
-    use StarTrait, UserStarTrait;
+    use StarTrait, UserStarTrait, ArticleStarTrait;
 
     /**
      * List of resources to automatically include
@@ -17,6 +17,7 @@ class UserStarTransformer extends TransformerAbstract
      * @var array
      */
     protected $defaultIncludes = [
+        'user',
         'article',
     ];
 }

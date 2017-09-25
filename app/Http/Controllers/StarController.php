@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Star;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,11 @@ class StarController extends ProtectedResource
     protected function model(): Model
     {
         return new Star();
+    }
+
+    public function index()
+    {
+        $this->response->errorForbidden();
     }
 
     protected function beforeStore(Request $request, Model $model)

@@ -3,6 +3,7 @@
 namespace App;
 
 
+use App\Transformers\StarTransformer;
 use League\Fractal\TransformerAbstract;
 
 class Star extends Model
@@ -22,7 +23,7 @@ class Star extends Model
      */
     function transformer(): TransformerAbstract
     {
-        // TODO: Implement transformer() method.
+        return new StarTransformer();
     }
 
     /**
