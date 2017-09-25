@@ -3,7 +3,7 @@
 namespace App;
 
 
-use App\Transformers\PageTransformer;
+use App\Transformers\ArticlePageTransformer;
 use League\Fractal\TransformerAbstract;
 
 class Page extends Model
@@ -33,6 +33,6 @@ class Page extends Model
      */
     function transformer(): TransformerAbstract
     {
-        return new PageTransformer();
+        return new ArticlePageTransformer();
     }
 }
