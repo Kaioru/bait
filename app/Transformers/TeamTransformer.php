@@ -4,10 +4,18 @@ namespace App\Transformers;
 
 
 use App\Team;
-use League\Fractal\TransformerAbstract;
 
-class TeamTransformer extends TransformerAbstract
+class TeamTransformer extends PublisherTransformer
 {
+    /**
+     * List of resources to automatically include
+     *
+     * @var array
+     */
+    protected $defaultIncludes = [
+        'articles',
+    ];
+
     public function transform(Team $model)
     {
         return [

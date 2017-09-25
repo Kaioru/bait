@@ -4,9 +4,8 @@ namespace App\Transformers;
 
 
 use App\User;
-use League\Fractal\TransformerAbstract;
 
-class UserTransformer extends TransformerAbstract
+class UserTransformer extends PublisherTransformer
 {
     /**
      * List of resources to automatically include
@@ -15,6 +14,7 @@ class UserTransformer extends TransformerAbstract
      */
     protected $defaultIncludes = [
         'stars',
+        'articles',
     ];
 
     public function transform(User $model)
