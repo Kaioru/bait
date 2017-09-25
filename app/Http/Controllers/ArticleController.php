@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 
 use App\Article;
-use Dingo\Api\Exception\UpdateResourceFailedException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -19,6 +18,17 @@ class ArticleController extends ProtectedResource
     protected function model(): Model
     {
         return new Article();
+    }
+
+    public function index()
+    {
+        $models = $this->model
+            ->where('unlisted', '=', 'false')
+            ->withCount('stars')
+            ->orderBy('stars_count', 'desc')
+            ->paginate(15);
+        $transformer = $this->transformer;
+        return $this->response->paginator($models, $transformer);
     }
 
     protected function beforeStore(Request $request, Model $model)

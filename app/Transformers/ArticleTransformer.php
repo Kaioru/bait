@@ -25,6 +25,7 @@ class ArticleTransformer extends TransformerAbstract
             'title' => (string)$model->title,
             'body' => (string)$model->body,
             'unlisted' => (boolean)$model->unlisted,
+            'star_count' => (int)$model->stars->count(),
             'publisher_type' => (string)$model->publisher_type,
         ];
     }
