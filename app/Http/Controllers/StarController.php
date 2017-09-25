@@ -27,7 +27,7 @@ class StarController extends ProtectedResource
 
     protected function beforeUpdate(Request $request, Model $model)
     {
-        return $this->response->errorForbidden();
+        $this->response->errorForbidden();
     }
 
     protected function beforeDestroy(Request $request, Model $model)
