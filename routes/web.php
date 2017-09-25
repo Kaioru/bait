@@ -2,10 +2,8 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticleSlugController;
-use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Controllers\Auth\AuthenticationController;
-use App\Http\Controllers\Auth\UserController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
 use Dingo\Api\Routing\Router;
 
 /*
@@ -31,6 +29,7 @@ $api->version('v1', function ($api) {
         $api->post('register', UserController::class . '@store');
     });
 
+    $api->get('users/{id}', UserController::class . '@show');
     $api->resource('slug/articles', ArticleSlugController::class);
     $api->resource('articles', ArticleController::class);
 });
