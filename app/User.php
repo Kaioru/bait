@@ -16,6 +16,18 @@ class User extends Publisher implements AuthenticatableContract, AuthorizableCon
 {
     use Authenticatable, Authorizable, UuidModelTrait;
 
+    protected $fillable = [
+        'username',
+        'email',
+        'password',
+    ];
+
+    public $validation = [
+        'username' => ['required'],
+        'email' => ['required'],
+        'password' => ['required'],
+    ];
+
     /**
      * Get the user's articles.
      */

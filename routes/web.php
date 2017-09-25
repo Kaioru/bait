@@ -29,7 +29,8 @@ $api->version('v1', function ($api) {
         $api->post('register', UserController::class . '@store');
     });
 
-    $api->get('users/{id}', UserController::class . '@show');
+    $api->get('self', UserController::class . '@self');
+    $api->resource('users', UserController::class);
     $api->resource('slug/articles', ArticleSlugController::class);
     $api->resource('articles', ArticleController::class);
 });
