@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 use App\Team;
 use App\User;
-use Illuminate\Auth\AuthenticationException;
 
 abstract class ProtectedResource extends Resource
 {
@@ -22,7 +21,9 @@ abstract class ProtectedResource extends Resource
                 return;
             }
         } else if ($publisher instanceof Team) {
-            // TODO
+            if ($publisher->users->contains('id', $user->id)) {
+                return;
+            }
         }
 
         $this->response->errorForbidden('no_permission_to_act');

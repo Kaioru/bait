@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Article;
+use App\Team;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -34,8 +35,16 @@ class ArticleController extends ProtectedResource
     protected function beforeStore(Request $request, Model $model)
     {
         $user = $request->user();
-        $model->publisher_id = $user->id;
-        $model->publisher_type = get_class($user);
+        $publisher = $user;
+
+        if ($request->has('team')) {
+            $team = $request->input('team');
+            $publisher = Team->find($team);
+            $this->authorizePublisher($user, $publisher);
+        }
+
+        $model->publisher_id = $publisher->id;
+        $model->publisher_type = get_class($publisher);
         parent::beforeStore($request, $model);
     }
 
