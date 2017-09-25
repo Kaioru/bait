@@ -3,10 +3,11 @@
 namespace App;
 
 
+use App\Transformers\ArticleTeamTransformer;
 use App\Transformers\TeamTransformer;
 use League\Fractal\TransformerAbstract;
 
-class Team extends Model
+class Team extends Publisher
 {
     /**
      * Get the team's articles.
@@ -40,5 +41,15 @@ class Team extends Model
     function transformer(): TransformerAbstract
     {
         return new TeamTransformer();
+    }
+
+    /**
+     * Get the transformer for the model.
+     *
+     * @return TransformerAbstract
+     */
+    function parentTransformer(): TransformerAbstract
+    {
+        return new ArticleTeamTransformer();
     }
 }

@@ -3,16 +3,16 @@
 namespace App;
 
 use Alsofronie\Uuid\UuidModelTrait;
+use App\Transformers\ArticleUserTransformer;
 use App\Transformers\UserTransformer;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 use League\Fractal\TransformerAbstract;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
+class User extends Publisher implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
     use Authenticatable, Authorizable, UuidModelTrait;
 
@@ -22,6 +22,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function articles()
     {
         return $this->morphMany(Article::class, 'publisher');
+    }
+
+    /**
+     * Get the user's stars.
+     */
+    public function stars()
+    {
+        return $this->hasMany(Star::class);
     }
 
     /**
@@ -48,6 +56,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     function transformer(): TransformerAbstract
     {
         return new UserTransformer();
+    }
+
+    /**
+     * Get the transformer for the model.
+     *
+     * @return TransformerAbstract
+     */
+    function parentTransformer(): TransformerAbstract
+    {
+        return new ArticleUserTransformer();
     }
 
     /**

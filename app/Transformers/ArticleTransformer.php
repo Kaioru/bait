@@ -14,6 +14,7 @@ class ArticleTransformer extends TransformerAbstract
      */
     protected $defaultIncludes = [
         'publisher',
+        'stars',
     ];
 
     public function transform(Article $model)
@@ -38,7 +39,21 @@ class ArticleTransformer extends TransformerAbstract
     {
         $include = $model->publisher;
         return $include
-            ? $this->item($include, $include->transformer())
+            ? $this->item($include, new ArticleUserTransformer())
+            : $this->null();
+    }
+
+    /**
+     * Include stars
+     *
+     * @param Article $model
+     * @return \League\Fractal\Resource\Collection|\League\Fractal\Resource\NullResource
+     */
+    public function includeStars(Article $model)
+    {
+        $include = $model->stars;
+        return $include
+            ? $this->collection($include, new ArticleStarTransformer())
             : $this->null();
     }
 }

@@ -32,6 +32,14 @@ class Article extends Model
     }
 
     /**
+     * Get the article's stars.
+     */
+    public function stars()
+    {
+        return $this->hasMany(Star::class);
+    }
+
+    /**
      * Get the article's pages.
      */
     public function pages()
