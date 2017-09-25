@@ -31,13 +31,13 @@ class ArticleController extends ProtectedResource
 
     protected function beforeUpdate(Request $request, Model $model)
     {
-        $this->authorizeUser($request->user(), $model->publisher);
+        $this->authorizePublisher($request->user(), $model->publisher);
         parent::beforeUpdate($request, $model);
     }
 
     protected function beforeDestroy(Request $request, Model $model)
     {
-        $this->authorizeUser($request->user(), $model->publisher);
+        $this->authorizePublisher($request->user(), $model->publisher);
         parent::beforeDestroy($request, $model);
     }
 }

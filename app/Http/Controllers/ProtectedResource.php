@@ -15,7 +15,7 @@ abstract class ProtectedResource extends Resource
         $this->middleware('jwt.auth', ['only' => ['store', 'update', 'destroy']]);
     }
 
-    public function authorizeUser(User $user, $publisher)
+    public function authorizePublisher(User $user, $publisher)
     {
         if ($publisher instanceof User) {
             if ($user->id == $publisher->id) {
