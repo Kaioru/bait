@@ -25,6 +25,6 @@ abstract class ProtectedResource extends Resource
             // TODO
         }
 
-        throw new AuthenticationException("Not allowed to act on model.");
+        $this->response->errorForbidden('no_permission_to_act');
     }
 }

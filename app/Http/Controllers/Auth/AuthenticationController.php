@@ -23,10 +23,10 @@ class AuthenticationController extends Controller
         $credentials = $request->only('email', 'password');
         try {
             if (!$token = $this->auth->attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+                $this->response->errorUnauthorized('invalid_credentials');
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            $this->response->errorInternal('could_not_create_token');
         }
         return response()->json(compact('token'));
     }

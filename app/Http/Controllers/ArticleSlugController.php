@@ -16,8 +16,9 @@ class ArticleSlugController extends ProtectedSlugResource
 
     public function beforeShow(Request $request, Model $model)
     {
-        if ($model->unlisted)
-            throw new ResourceNotFoundException("No permission to view model.");
+        if ($model->unlisted) {
+            $this->response->errorForbidden('no_permission_to_show');
+        }
         parent::beforeShow($request, $model);
     }
 }
