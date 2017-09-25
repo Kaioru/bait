@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticleSlugController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\StarController;
 use App\Http\Controllers\UserController;
 use Dingo\Api\Routing\Router;
 
@@ -33,4 +34,5 @@ $api->version('v1', function ($api) {
     $api->resource('users', UserController::class);
     $api->resource('slug/articles', ArticleSlugController::class);
     $api->resource('articles', ArticleController::class);
+    $api->resource('stars', StarController::class);
 });

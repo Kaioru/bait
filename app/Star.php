@@ -7,6 +7,14 @@ use League\Fractal\TransformerAbstract;
 
 class Star extends Model
 {
+    protected $fillable = [
+        'article_id',
+    ];
+
+    public $validation = [
+        'article_id' => ['required'],
+    ];
+
     /**
      * Get the transformer for the model.
      *
