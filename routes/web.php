@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\ArticleSlugController;
-use App\Http\Controllers\Auth\AuthenticationController;
-use App\Http\Controllers\StarController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\ArticleSlugController;
+use App\Http\Controllers\Api\Auth\AuthenticationController;
+use App\Http\Controllers\Api\StarController;
+use App\Http\Controllers\Api\UserController;
 use Dingo\Api\Routing\Router;
 
 /*

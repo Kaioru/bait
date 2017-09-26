@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Api\Auth;
 
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Http\Request;
