@@ -39,7 +39,7 @@ class ArticleController extends ProtectedResource
 
         if ($request->has('team')) {
             $team = $request->input('team');
-            $publisher = Team->find($team);
+            $publisher = Team::find($team);
             $this->authorizePublisher($user, $publisher);
         }
 
