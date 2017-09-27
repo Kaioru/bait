@@ -21,6 +21,10 @@ class User extends Publisher implements AuthenticatableContract, AuthorizableCon
         'email',
         'password',
     ];
+    
+    protected $hidden = [
+        'password',
+    ];
 
     public $validation = [
         'username' => ['required'],
