@@ -40,7 +40,7 @@ class ArticleTransformer extends TransformerAbstract
     {
         $include = $model->publisher;
         return $include
-            ? $this->item($include, new ArticleUserTransformer())
+            ? $this->item($include, $include->parentTransformer())
             : $this->null();
     }
 
